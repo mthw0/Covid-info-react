@@ -16,6 +16,7 @@
     "react-scripts": "5.0.0",
     "sass": "^1.49.4",
     "sweetalert2": "^11.3.10",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

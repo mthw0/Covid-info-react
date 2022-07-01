@@ -1,62 +1,17 @@
 import * as React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import logo from './logo.svg';
 import './sass/app.scss';
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Co_je_covid from './components/co_je_covid'
 import Aktualne_opatrenia from './components/aktualne_opatrenia'
 import Ockovacie_miesta from './components/ockovacie_miesta/index'
 import Novinky from './components/novinky/index'
 import Ockovanie from './components/ockovanie'
-import {Button, Nav, ProgressBar} from "react-bootstrap";
+import {Button, Nav, Row, Col, Navbar, Container} from "react-bootstrap";
 import Image from 'react-bootstrap/Image'
 
 import $ from 'jquery';
 
 function App() {
-    $('document').ready(function () {
-        start()
-    })
-
-    function createCookie(name, value) {
-        document.cookie = name + "=" + value + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; Secure";
-    }
-
-    function readCookie(name) {
-        const cookieValue = document.cookie
-            .split('; ')
-            .find(row => row.startsWith(name))
-            .split('=')[1];
-        return cookieValue;
-    }
-
-    function checkCookie(name) {
-        if (document.cookie.split(';').some((item) => item.trim().startsWith(name))) {
-            return true;
-        }
-    }
-
-    function start() {
-        var cookieMessage = $('#cookie-message');
-        if (cookieMessage == null) {
-            return;
-        }
-        if (checkCookie('suhlas') && readCookie('suhlas') == 'yes') {
-            $('#cookie-message').css('display', 'none');
-        } else {
-            $('#cookie-message').css('display', 'block');
-        }
-
-    }
-
-    function OK() {
-        createCookie('suhlas', 'yes');
-        $('#cookie-message').css('display', 'none')
-    }
-
     window.onscroll = function () {
         scrollFunction()
     };
@@ -106,13 +61,7 @@ function App() {
                 <div className="progress-bar" id="myBar"/>
             </div>
 
-            <Image src={'img/Header-Background.webp'} height={'50px'}/>
-
-            <div id="cookie-message" data-cookie-expiry="60" className="alert alert-primary" role="alert">
-                Používaním tejto stránky súhlasíte s používaním súborov cookie.
-                <span className="alert-link" onClick="OK()">OK&nbsp;</span>
-            </div>
-
+            <Image src={'img/Header-Background.webp'} width={"100%"}/>
 
             <Button onClick={topFunction} id="myBtn" title="Go to top">▲</Button>
 
@@ -120,12 +69,12 @@ function App() {
                 <Row>
                     <Col md={12}>
                         <Routes>
+                            <Route path="/" element={<Co_je_covid/>}/>
                             <Route path="/co_je_covid" element={<Co_je_covid/>}/>
                             <Route path="/aktualne_opatrenia" element={<Aktualne_opatrenia/>}/>
                             <Route path="/ockovacie_miesta" element={<Ockovacie_miesta/>}/>
                             <Route path="/novinky" element={<Novinky/>}/>
                             <Route path="/ockovanie" element={<Ockovanie/>}/>
-
                         </Routes>
                     </Col>
                 </Row>

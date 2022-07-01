@@ -1,5 +1,16 @@
 import {Button} from "react-bootstrap";
 
+export function full(){
+    if (!document.fullscreenElement)
+    {
+        document.getElementById("section").requestFullscreen();
+    }
+    else {
+        document.exitFullscreen();
+    }
+
+}
+
 export default function Aktualne_opatrenia() {
     return (
 
@@ -106,7 +117,7 @@ export default function Aktualne_opatrenia() {
 
             <section id="section">
                 <Button variant="primary" id="fullScreen"
-                        onClick="!document.fullscreenElement?document.getElementById('section').requestFullscreen():document.exitFullscreen();">
+                        onClick={full}>
                     Zväčšiť/Zmenšiť
                 </Button>
                 <iframe id="map" src="https://datawrapper.dwcdn.net/5i1e9/1/"></iframe>
